@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>markdown editor</title>
+    <link rel="stylesheet" href="markdown.css">
+    <script src="library/vue.js"></script>
+    <script src="//cdn.bootcss.com/marked/0.3.6/marked.js"></script>
+    <script src="library/lodash.js"></script>
+</head>
+<body>
+    <div id="editor">
+        <textarea :value="input" @input="update"></textarea>
+        <div v-html="compiledMarkdown"></div>
+    </div>
+
+    <script src="javascript/markdown.js"></script>
+</body>
+</html>

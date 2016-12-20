@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class和style绑定</title>
+    <script src="vue.js"></script>
+    <style>
+        .static {
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+        }
+        .active {
+            border: 5px solid yellow;
+        }
+        .danger {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<!--绑定class-->
+    <!--直接绑定对象-->
+    <div id="example-1" class="static" v-bind:class="{active: isActive, danger: isDanger}"></div>
+
+    <!--绑定数据对象-->
+    <div id="example-2" class="static" v-bind:class="classObj"></div>
+
+    <!--绑定计算属性-->
+    <div id="example-3" class="static" v-bind:class="classObj"></div>
+
+    <!--绑定数组-->
+    <div id="example-4" class="static" v-bind:class="[activeClass, dangerClass]"></div>
+
+    <!--数组中根据条件切换-->
+    <div id="example-5" class="static" v-bind:class="[isActive ? activeClass : '', dangerClass]"></div>
+    <!--等价于-->
+    <div v-bind:class="[{activeClass: isActive}, dangerClass]"></div>
+
+<!--绑定style对象-->
+    <div id="example-6" class="static" v-bind:style="{border: borderStyle, backgroundColor: color}"></div>
+<!--绑定数据对象-->
+<div id="example-7" class="static" v-bind:style="styleObj">7</div>
+<!--绑定数组-->
+<div id="example-8" class="static" v-bind:style="[baseStyle, overrideStyle]">8</div>
+    <script src="style.js"></script>
+</body>
+</html>

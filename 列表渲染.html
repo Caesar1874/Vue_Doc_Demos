@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <ul id="example-1">
+        <li v-for="item in items">
+            {{item.message}}
+        </li>
+    </ul>
+
+    <ul id="example-2">
+        <li v-for="(item, index) in items">
+            {{parentMessage}}-{{index}}-{{item.message}}
+        </li>
+    </ul>
+
+    <ul id="example-3">
+        <template v-for="item in items">
+            <li>{{item.msg}}</li>
+            <li class="divider"></li>
+        </template>
+    </ul>
+
+    <ul id="example-4">
+        <li v-for="value in obj">
+            {{value}}
+        </li>
+    </ul>
+
+    <ul id="example-5">
+        <li v-for="(value, key, index) in obj">
+            {{key}} : {{value}} : {{index}}
+        </li>
+    </ul>
+
+    <div id="example-6">
+        <span v-for="n in 10">
+            {{n}}
+        </span>
+    </div>
+
+    <ul id="example-7">
+       <li v-for="n in evenNumbers">{{n}}</li>
+    </ul>
+
+    <ul id="example-8">
+        <li v-for="n in even(numbers)">{{n}}</li>
+    </ul>
+<script src="traverse.js"></script>
+</body>
+</html>

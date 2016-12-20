@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list move transition</title>
+    <script src="library/vue.js"></script>
+    <script src="library/lodash.js"></script>
+    <style>
+        span {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .fade-move {
+            transition: transform 2s;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="move-transition">
+        <button @click="shuffle">shuffle</button>
+        <transition-group name="fade" tag="p">
+            <span v-for="item in items" :key="item">{{item}}</span>
+        </transition-group>
+    </div>
+<script>
+    new Vue({
+        el: "#move-transition",
+        data: {
+            items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        },
+        methods: {
+            shuffle: function() {
+                this.items=_.shuffle(this.items);
+            }
+        }
+    })
+</script>
+</body>
+</html>

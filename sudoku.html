@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sudoku</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 238px;
+            margin-top: 10px;
+        }
+        .cell {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #aaa;
+            margin-right: -1px;
+            margin-bottom: -1px;
+        }
+        .fade-move {
+            transition: transform 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="sudoku">
+        <button @click="shuffle">Shuffle</button>
+        <transition-group name="fade" tag="div" class="container">
+            <span v-for="cell in cells" :key="cell.id" class="cell">{{cell.number}}</span>
+        </transition-group>
+    </div>
+
+<script src="library/vue.js"></script>
+<script src="library/lodash.js"></script>
+<script>
+    new Vue({
+        el: "#sudoku",
+        data: {
+            cells: Array.apply(null, {length: 81}).map(function(ele, index) {
+                return {
+                    id: index,
+                    number: index % 9 +1
+                }
+            })
+        },
+        methods: {
+            shuffle: function() {
+                this.cells = _.shuffle(this.cells)
+            }
+        }
+    })
+</script>
+</body>
+</html>

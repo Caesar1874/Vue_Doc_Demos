@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>navigator bar</title>
+    <link rel="stylesheet" href="navigatorBar.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="container">
+        <!--.prevent阻止跳转-->
+        <nav :class="active" @click.prevent>
+            <a href="#" class="home" @click="makeActive($event)">Home</a>
+            <a href="#" class="projects" @click="makeActive($event)">Projects</a>
+            <a href="#" class="services" @click="makeActive($event)">Services</a>
+            <a href="#" class="contact" @click="makeActive($event)">Contact</a>
+        </nav>
+        <transition name="fade" mode="out-in">
+            <article class="article" v-if="isActive.home" key="home">
+                <h3 class="heading">Home: you choose <b>{{active}}</b></h3>
+                <section>
+                两年前冬季，我开车从山西和顺回家走小路，一个人。当时雪下的很厚，天色也渐晚。 车已经开入茫茫太行山，我也比较小心的放缓速度，因为有拉煤的大车为了逃避过路费走小道的很多。 山路十八弯，我没有因为躲避大车出事故，却因自己看不清哪里是雪哪里是路而压坑里。当时给家人打电话没有接通，着急的很。巍巍太行像两个巨大的夜叉杵在天地间，我自己又冷又怕。。
+            </section>
+            </article>
+            <article class="article"  v-if="isActive.projects" key="projects">
+                <h3 class="heading">Projects: you choose <b>{{active}}</b></h3>
+                <section>
+                    记忆中这条路前方有个沙场，大概离这里2/3公里，于是锁好车子去求助。 冰冷的雪把脸都拍麻了 ，一脚踩冰窟窿里，靴子也灌水了，把水倒出继续走。看到沙场，高兴坏了，但是看着沙场小屋黑咕隆咚的样子，又失望了。这时候腿都冻麻了，鼻子生疼，就想着赶快回车里，开着暖风一晚上也可以忍过去。于是扭头往回走。这时候对面来车，车灯晃眼。不敢求助，怕遇到坏人，车子在我面前停下。是辆皮卡，车上一对中年夫妇。询问我是不是前面那个车的主人，我说是的，我去前面的沙场求助了。他们说他们就是沙场的主人
+                </section>
+            </article>
+            <article class="article"  v-if="isActive.services" key="services">
+                <h3 class="heading">Services: you choose <b>{{active}}</b></h3>
+                <section>
+                    是的童话世界！屋子大概只有15平左右，屋子的中央是一个烧的通红的小铁炉，烟囱穿过一个大水箱，被铁丝固定拐个弯伸出窗外。锅炉上烧的水早开了，壶盖被热气顶开了。炉子东面是一张大床，整齐的放着两条被子和枕头。
+                </section>
+            </article>
+            <article class="article" v-if="isActive.contact" key="contact">
+                <h3 class="heading">Contact: you choose <b>{{active}}</b></h3>
+                <section>
+                    床头挨着火炉是组三人沙发。在沙发的对面火炉子另一侧，是大衣柜和一张茶几。茶几上右侧摆着洗漱用品，左侧是一张案板和厨具。茶几的中层和下层被日用品挤满，虽然满，但不乱。在炉子西侧窗台下是一张书桌，上面有台电脑。炉子旁边是装满煤炭的小桶，，小桶里别着一个大夹子，用来夹住煤炭放炉子里不脏手吧！
+                </section>
+            </article>
+        </transition>
+    </div>
+    <script src="navigatorBar.js"></script>
+</body>
+</html>

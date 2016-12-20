@@ -1,0 +1,102 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #container {
+    height: 100%;
+}
+body {
+    font: 15px/1.3 "Open Sans", sans-serif;
+    color: #5e5b64;
+    text-align: center;
+}
+
+#container {
+    width: 80%;
+    margin: 0 auto;
+
+    border: 1px solid green;
+}
+
+nav {
+    /*技巧： 如果不希望宽度100%， 设为inline-block*/
+    display: block;
+    background-color: #5597b4;
+    box-shadow: 0 1px 1px #ccc;
+    border-radius: 2px;
+}
+
+nav a {
+    display: inline-block;
+    padding: 18px 30px;
+    color: #fff !important;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    transition: background 0.25s;
+}
+
+nav a:first-child {
+    border-radius: 2px 0 0 2px;
+}
+nav a:last-child {
+    border-radius: 0 2px 2px 0;
+}
+
+/*nav的类是动态绑定为导航项，所以可以控制当前项的背景*/
+nav.home .home,
+nav.projects .projects,
+nav.services .services,
+nav.contact .contact {
+    background-color: #e35885;
+}
+
+a, a:visited {
+    outline: none;
+    color: #389dc1;
+}
+a:hover {
+    text-decoration: none;
+}
+
+
+.article {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #7d9098;
+}
+.heading {
+    margin:25px 0;
+
+}
+.heading b {
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #c4d7e0;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+.article section {
+    text-align: left;
+}
+
+.fade-enter {
+    opacity: 0;
+    /*background-color: red;*/
+}
+.fade-enter-active {
+    transition: all 0.1s;
+}
+.fade-leave-active {
+    transition: all 0.1s;
+    opacity: 1;
+    /*background-color: green;*/
+}

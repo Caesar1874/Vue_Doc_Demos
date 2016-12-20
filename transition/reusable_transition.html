@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reusable transition</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<script src="library/vue.js"></script>
+<script>
+    Vue.component("reusable-transitoin", {
+        template: `
+            <transition
+                name="very-special-transitoin"
+                mode="out-in"
+                :before-enter="beforeEnter"
+                :after-enter="afterEnter"
+            >
+               <slot></slot>
+           </transition>
+        `,
+        methods: {
+            beforeEnter: function(el) {
+                //
+            },
+            afterEnter: function(el) {
+                //
+            }
+        }
+    })
+</script>
+</body>
+</html>

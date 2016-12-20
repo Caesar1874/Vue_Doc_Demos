@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>conditional</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!--v-if-->
+    <h1 id="example-1" v-if="isRendering">heading</h1>
+
+    <!--条件渲染多个元素-->
+    <template id="example-2" v-if="isRendering">
+        <h1>heading</h1>
+        <p>paragraph 1</p>
+        <p>paragraph 2</p>
+    </template>
+
+    <!--v-else-->
+    <div id="example-3" v-if="isRender"> it's me</div>
+    <div v-else>it's not me</div>
+
+    <!--v-show-->
+    <div id="example-4" v-show="isRender">v-show</div>
+
+<script src="conditional.js"></script>
+</body>
+</html>

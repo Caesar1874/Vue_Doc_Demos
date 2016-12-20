@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+
+        }
+        div {
+            width: 500px;
+            outline: 1px solid green;
+        }
+        span {
+            outline: 1px solid pink;
+        }
+
+        .container-1 {
+            text-align: center;
+        }
+        .inlineBox-1 {
+            width: 500px; /*无效*/
+            margin: 0 5px;
+            border: 1px solid blue;
+            padding:0 5px;
+        }
+
+
+        .inlineBox-2 {
+            height: 500px; /*无效*/
+            line-height: 12px;
+            margin: 5px 0;
+            border: 1px solid blue;
+            padding: 5px 0;
+        }
+
+        .container-3 {
+            line-height: 60px;
+        }
+        .inlineBox-3:nth-child(1) {
+            line-height: 20px;
+            vertical-align: top;
+        }
+        .inlineBox-3:nth-child(2) {
+            line-height: 40px;
+            vertical-align: bottom;
+            /*如果该行内框的高度就是行框的高度所以设置无效*/
+
+        }
+    </style>
+</head>
+<body>
+  <div class="container-1">
+      <!--行内框的宽度由内容决定(width不适用)，行内框之间存在着水平方向的margin, border和padding；-->
+        <!--行内框水平方向之间存在间隙，设置父元素的font-size: 0消除-->
+      <!--当所有行内框的宽度小于行框时，行内框在行框中的分布方式由text-align属性决定；-->
+      <span class="inlineBox-1">Lorem ipsum dolor.</span>
+      <span class="inlineBox-1">Lorem ipsum dolor.</span>
+  </div>
+  <br>
+  <div class="container-2">
+      <!--行内框的高度由line-height属性确定， height不适用；-->
+      <!--行内框在垂直方向上的margin, padding和border是渲染, 但与行内框的高度无关-->
+      <span class="inlineBox-2">Lorem ipsum dolor.</span>
+      <span class="inlineBox-2">Lorem ipsum dolor.</span>
+  </div>
+  <br>
+  <div class="container-3">
+   <!--确定行框的高度-->
+      <!--* 计算每个行内框的高度：-->
+      <!--* 对于行内框，其高度由line-height属性确定；-->
+
+      <span class="inlineBox-3">Lorem ipsum dolor.</span>
+      <span class="inlineBox-3">Lorem ipsum dolor.</span>
+  </div>
+
+</body>
+</html>

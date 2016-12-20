@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡</title>
+    <script src="library/vue.js"></script>
+    <link rel="stylesheet" href="library/animate.css">
+    <style>
+        /*fade*/
+        .fade {
+            opacity: 1;
+            background-color: greenyellow;
+        }
+        .fade-enter{
+            opacity: 0;
+            background-color: red;
+        }
+        .fade-enter-active  {
+            transition: all 2s;
+        }
+        /*.fade-leave {
+            opacity: 1;
+            background-color: red;
+        }*/
+        .fade-leave-active {
+            transition: all 2s;
+            opacity: 0;
+            background-color: blueviolet;
+        }
+
+
+        /*silde*/
+        .slide-enter-active {
+            transition: all 1.3s ease;
+        }
+        .slide-leave-active {
+            transition: all 2.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-enter, .slide-leave-active {
+            padding-left: 10px;
+            opacity: 0;
+        }
+
+        /*bounce*/
+        .bounce-enter-active {
+            animation: bounce-in 1s;
+        }
+        .bounce-leave-active {
+            animation: bounce-out 1s;
+        }
+        @keyframes bounce-in {
+            from {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        @keyframes bounce-out {
+            from {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            to {
+                transform: scale(0);
+            }
+        }
+
+        /*list*/
+        .list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .list-enter-active, .list-leave-active {
+            transition: all 1s;
+        }
+        .list-enter, .list-leave-active {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /*flip*/
+        .flip-list-move {
+            transition: transform 1s;
+        }
+
+        /*list-complete*/
+        .list-complete-item {
+            transition: all 1s;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .list-complete-enter, .list-complete-leave-active {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .list-complete-leave-active {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="transition-single">
+        <button v-on:click="show = !show">Toggle</button>
+        <transition name="fade" appear>
+            <p v-if="show" class="fade">transition single</p>
+        </transition>
+    </div>
+
+    <div id="transition-animation">
+        <button v-on:click="show = !show">Toggle</button>
+        <transition name="bounce">
+            <p v-if="show">transition animation</p>
+        </transition>
+    </div>
+
+    <div id="custom-class">
+        <button @click="show = !show">toggle</button>
+        <transition
+            name="custom-classes-transition"
+            enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight"
+        >
+            <p v-if="show">custom transitin class</p>
+        </transition>
+    </div>
+
+    <div id="transition-hook">
+        <button @click="show = !show">toggle</button>
+        <transition
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            v-bind:css="false"
+        >
+            <p v-if="show">javascript hooks</p>
+        </transition>
+    </div>
+
+    <div id="between-element">
+        <button @click="show = !show">between element</button>
+        <transition name="fade">
+            <p v-if="show"  key="paragraph-if">if: I'm show</p>
+            <p v-else  key="paragraph-else">else i will show</p>
+        </transition>
+    </div>
+    <!--可以改写为动态key属性-->
+    <div id="between-element-2">
+        <transition name="fade">
+            <p :key="show" @click="show = !show">{{show ? "paragraph-if ": "paragraph-else"}}</p>
+        </transition>
+    </div>
+
+    <div id="between-elements">
+        <transition name="fade">
+            <p v-if="docState === 'edit'" key="edit">edit</p>
+            <p v-if="docState === 'save'" key="save">save</p>
+            <p v-if="docState === 'cancel'" key="cancel">cancel</p>
+        </transition>
+    </div>
+
+    <div id="transition-mode">
+        <button @click="show = !show">transition mode</button>
+        <transition name="fade" mode="in-out">
+            <p v-if="show" key="first">first paragraph</p>
+            <p v-else key="second">second paragraph</p>
+        </transition>
+    </div>
+
+    <div id="dynamic-component">
+        <button @click=" show = !show; ">dynamic component</button>
+        <transition name="fade">
+            <component v-bind:is=view()></component>
+        </transition>
+    </div>
+
+    <div id="list-transition">
+        <button @click="add">Add</button>
+        <button @click="remove">Remove</button>
+        <transition-group name="list" tag="p">
+            <span v-for="item in items" v-bind:key="item" class="list-item">{{item}}</span>
+        </transition-group>
+    </div>
+
+    <div id="flip-list">
+        <button @click="shuffle">Shuffle</button>
+        <transition-group name="flip-list" tag="ul">
+            <li v-for="item in items" v-bind:key="item">
+                {{item}}
+            </li>
+        </transition-group>
+    </div>
+
+    <div id="list-complete">
+        <button @click="shuffle">Shufle</button>
+        <button @click="add">Add</button>
+        <button @click="remove">Remove</button>
+        <transition-group name="list-complete" tag="p">
+            <span
+                v-for="item in items"
+                v-bind:key="item"
+                class="list-complete-item"
+            >
+                {{item}}
+            </span>
+        </transition-group>
+    </div>
+
+    <div id="staggered-list">
+        <input type="text" v-model="query">
+        <transition-group
+            name="staggered-fade"
+            tag="ul"
+            :css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+        >
+            <li
+                v-for="(item, index) in computedList"
+                :key="item.msg"
+                :data-index="index"
+            >{{item.msg}}</li>
+        </transition-group>
+    </div>
+
+<script src="library/velocity.js"></script>
+<script src="library/lodash.js"></script>
+<script src="javascript/transition.js"></script>
+</body>
+</html>

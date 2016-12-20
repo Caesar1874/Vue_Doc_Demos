@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dynamic componenet</title>
+    <script src="library/vue.js"></script>
+    <style>
+        .fade-enter {
+            opacity: 0;
+            background-color: red;
+        }
+        .fade-enter-active {
+            transition: all 2s;
+        }
+        .fade-leave-active {
+            transition: all 2s;
+            opacity: 0;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="dynamic-component">
+        <button @click="show = !show">dynamic component</button>
+        <transition name="fade" mode="out-in">
+            <component v-bind:is=view()></component>
+        </transition>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#dynamic-component",
+            data: {
+                show: true
+            },
+            methods: {
+                view: function() {
+                    return this.show ? "v-apple" : "v-banana";
+                }
+            },
+            components: {
+                "v-apple": {
+                    template: "<div>I am a apple.</div>"
+                },
+                "v-banana": {
+                    template: "<div>I am a banana.</div>"
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

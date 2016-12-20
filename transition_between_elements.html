@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transition between elements</title>
+    <style>
+        .fade-enter {
+            opacity: 0;
+            background-color: red;
+        }
+        .fade-enter-active {
+            transition: all 2s;
+        }
+        .fade-leave-active {
+            transition: all 2s;
+            opacity: 0;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="between-elements">
+        <button @click=next($event)>between elements</button>
+        <transition name="fade" mode="out-in">
+            <p v-if="docState.edit" key="edit">eidt</p>
+            <p v-if="docState.save" key="save">save</p>
+            <p v-if="docState.cancel" key="cancel">cancel</p>
+        </transition>
+    </div>
+<script src="library/vue.js"></script>
+<script>
+    new Vue({
+        el: "#between-elements",
+        data: {
+            docState: {
+                edit: true,
+                save: false,
+                cancel: false
+            }
+        },
+        methods: {
+            next: function(event) {
+                console.log(event);
+                this.docState.edit = false;
+                this.docState.save = true;
+            }
+        }
+    })
+</script>
+</body>
+</html>

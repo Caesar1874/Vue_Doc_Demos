@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+    <link rel="stylesheet" href="vue-date.css">
+</head>
+<body>
+    <div id="target">
+        <vue-calendar :date.sync="time">
+
+        </vue-calendar>
+        <h2>当前时间戳： {{time}}</h2>
+    </div>
+<script src="library/vue.js"></script>
+<scritp src="vue-date.js"></scritp>
+</body>
+</html>

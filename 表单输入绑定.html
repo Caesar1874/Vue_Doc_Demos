@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单输入绑定</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example-1">
+        <input type="text" v-model="message" placeholder="edit me">
+        <p>Message is {{message}}</p>
+    </div>
+
+    <div id="example-2">
+        <span>Multilien message is: </span>
+        <p>{{message}}</p>
+        <textarea name="" id="" cols="30" rows="10" v-model="message" placeholder="add multiline lines">
+
+        </textarea>
+    </div>
+
+    <div id="example-3">
+        <input type="checkbox" name="" id="" v-model="checked" value="qing">
+        <label for="checkbox">{{checked}}</label>
+    </div>
+
+    <div id="example-4">
+        <input type="checkbox" name="" id="" value="Jack" v-model="checkedNames">
+        <label for="">Jack</label>
+        <input type="checkbox" name="" id="" value="John" v-model="checkedNames">
+        <label for="">John</label>
+        <input type="checkbox" name="" id="" value="Mike" v-model="checkedNames">
+        <label for="">Mike</label>
+        <br>
+        <span>Checked name: {{checkedNames}}</span>
+    </div>
+
+    <div id="example-5">
+        <input type="radio" name="" id="" value="one" v-model="picked">
+        <label for="">One</label>
+        <input type="radio" name="" id="" value="two" v-model="picked">
+        <label for="">Two</label>
+        <br>
+        <span>Picked: {{picked}}</span>
+    </div>
+
+    <div id="example-6">
+        <select name=""  v-model="selected">
+            <option value="apple">A</option>
+            <option value="banana">B</option>
+            <option value="cherry">C</option>
+        </select>
+        <span>Selected: {{selected}}</span>
+    </div>
+
+    <div id="example-7">
+        <select name="" id="" v-model="selected" multiple="multiple">
+            <option value="apple">A</option>
+            <option value="banana">B</option>
+            <option value="cherry">C</option>
+        </select>
+        <span>Selected: {{selected}}</span>
+    </div>
+
+    <div id="example-8">
+        <select name="" id="" v-model="selected">
+            <option  v-for="option in options" v-bind:value="option.value">
+                {{option.text}}
+            </option>
+        </select>
+        <span>Selected: {{selected}}</span>
+    </div>
+
+    <div id="example-9">
+        <input type="checkbox" name="" id="" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+        <span>Toggle: {{toggle}}</span>
+    </div>
+
+    <div id="example-10">
+        <input type="radio" name="" id="" v-model="pick" v-bind:value="a">
+        <input type="radio" name="" id="" v-model="pick" v-bind:value="b">
+        <span>Pick: {{pick}}</span>
+    </div>
+
+    <div id="example-11">
+        <select name="" id="" v-model="selected">
+            <option value="" v-bind:value="{number: 123}">123</option>
+        </select>
+        <span>Selected.number: {{selected.number}}</span>
+    </div>
+
+    <div id="example-12">
+        <select name="" id="" v-model="selected">
+            <option value="" v-bind:value="arr[0]">A</option>
+            <option value="" v-bind:value="arr[1]">B</option>
+        </select>
+        <span>Selected.msg: {{selected.msg}}</span>
+    </div>
+
+    <div id="example-13">
+        <input type="text" name="" id="" v-model.lazy="inputText">
+        <span>inputText: {{inputText}}</span>
+    </div>
+<script src="formBinding.js"></script>
+</body>
+</html>

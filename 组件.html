@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-component></my-component>
+    </div>
+    <div id="example-1">
+        <my-component></my-component>
+        <local-component></local-component>
+    </div>
+
+    <div id="example-2">
+        <component-1></component-1>
+    </div>
+    
+    <div id="example-3">
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+    </div>
+
+    <div id="example-4">
+        <child my-message="example-4"></child>
+    </div>
+
+    <div id="example-5">
+        <input type="text" v-model="parentMsg">
+        <br>
+        <child v-bind:my-message="parentMsg"></child>
+    </div>
+
+    <script src="component.js"></script>
+</body>
+</html>
